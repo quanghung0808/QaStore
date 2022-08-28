@@ -23,12 +23,7 @@ const connectDB = async () => {
 };
 
 connectDB();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
-  });
-}
+
 const app = express();
 app.use(express.json());
 app.use(cors());
