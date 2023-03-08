@@ -1,0 +1,11 @@
+.padding-row th {
+  display: block;
+}
+
+body {
+  background-image: url("https://www.ipsos.com/sites/default/files/ct/news_and_polls/2022-11/ipsos-global-advisor-fifa-world-cup-2022.jpg");
+}
+
+.add {
+  margin-top: 5rem;
+}

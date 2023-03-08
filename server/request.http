@@ -8,12 +8,16 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:5000/api/auth/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MmZjNzVmYzNhODUwY2I1NmFkMmRhNDciLCJpYXQiOjE2NjA3MTM1Nzh9.rvdsCQz8KAV-LDBcYbY_RaRuyhBye6QQkRjAGgCs2r4
+
+###
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "asdsad",
-    "password": "asdasd"
+    "username": "jim",
+    "password": "jim"
 }
 
 ###
