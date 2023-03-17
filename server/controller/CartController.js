@@ -1,64 +1,71 @@
 const Cart = require("../models/Cart");
 
-
-const add_to_cart = async(req, res) => { 
-    try {
-      const existingCartItem = await Cart.findOne({ product_id: req.body.product_id });
-      if (existingCartItem) {
-        // If it exists, update the existing item by incrementing its amount by 1
-        existingCartItem.amount += 1;
-        const updatedCartItem = await existingCartItem.save();
-        res.status(200).send({ success:true, msg:"Cart Product detail updated",data: updatedCartItem });
+const add_to_cart = async (req, res) => {
+  try {
+    const existingCartItem = await Cart.findOne({
+      product_id: req.body.product_id,
+    });
+    if (existingCartItem) {
+      // If it exists, update the existing item by incrementing its amount by 1
+      existingCartItem.amount += 1;
+      const updatedCartItem = await existingCartItem.save();
+      res.status(200).send({
+        success: true,
+        msg: "Cart Product detail updated",
+        data: updatedCartItem,
+      });
     } else {
-        // If it does not exist, create a new cart item with the provided details
-        const cart_obj = new Cart({
-            product_id: req.body.product_id,
-            product_name: req.body.product_name,
-            price: req.body.price,
-            user_id: req.body.user_id,
-            amount : 1
-        });
+      // If it does not exist, create a new cart item with the provided details
+      const cart_obj = new Cart({
+        product_id: req.body.product_id,
+        product_name: req.body.product_name,
+        price: req.body.price,
+        user_id: req.body.user_id,
+        amount: 1,
+      });
 
-        const cartData = await cart_obj.save();
+      const cartData = await cart_obj.save();
 
-        res.status(200).send({ success:true, msg:"Cart Product detail added",data: cartData });
+      res.status(200).send({
+        success: true,
+        msg: "Cart Product detail added",
+        data: cartData,
+      });
     }
 
-        // res.status(200).send({ success:true, msg:"Cart Product detail",data: cartData });
+    // res.status(200).send({ success:true, msg:"Cart Product detail",data: cartData });
+  } catch (error) {
+    res.status(400).send({ success: false, msg: error.message });
+  }
+};
 
-    } catch (error) {
-        res.status(400).send({success:false, msg: error.message});
+const getCart = async (req, res) => {
+  try {
+    const user_id = req.query.user_id;
+    const cart = await Cart.find({ user_id }).exec();
+
+    if (!cart) {
+      return res.status(404).json({
+        success: false,
+        message: "Cart not found",
+      });
     }
-}
 
-const getCart = async(req, res) => { 
-    try {
-        const user_id = req.query.user_id;
-        const cart = await Cart.find({ user_id }).exec();
-    
-        if (!cart) {
-          return res.status(404).json({
-            success: false,
-            message: "Cart not found",
-          });
-        }
-    
-        res.json({
-          success: true,
-          message: "Cart retrieved successfully",
-          CartDetail: cart,
-        });
-      } catch (error) {
-        console.error(error.message);
-        res.status(500).json({
-          success: false,
-          message: "Server error",
-        });
-      }
+    res.json({
+      success: true,
+      message: "Cart retrieved successfully",
+      CartDetail: cart,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({
+      success: false,
+      message: "Server error",
+    });
+  }
+};
 
-}
-
-const removeItem = async(req, res) => { 
+const removeItem = async (req, res) => {
   try {
     const product_id = req.query.product_id;
     const removeItem = await Cart.findOneAndDelete({ product_id }).exec();
@@ -78,12 +85,10 @@ const removeItem = async(req, res) => {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
-
-}
-
+};
 
 module.exports = {
-    add_to_cart,
-    getCart,
-    removeItem
-}
+  add_to_cart,
+  getCart,
+  removeItem,
+};

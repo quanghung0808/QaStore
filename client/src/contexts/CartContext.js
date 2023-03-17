@@ -1,3 +1,4 @@
+import { render } from "@testing-library/react";
 import React, { useState, useReducer, useEffect } from "react";
 import { playerReducer } from "../reducers/playerReducer";
 import axios from "axios";
@@ -43,6 +44,7 @@ const CartProvider = (props) => {
         `${apiUrl}/cart/add-to-cart`,
         requestCart
       );
+      console.log(response);
       if (response.data.success) {
         dispatch({
           type: ADD_CART,
@@ -63,6 +65,8 @@ const CartProvider = (props) => {
       const response = await axios.get(
         `${apiUrl}/cart/getCart?user_id=${user._id}`
       );
+      console.log(response);
+
       console.log("The View Cart: " + JSON.stringify(response.data.CartDetail));
       if (response.data.success) {
         dispatch({

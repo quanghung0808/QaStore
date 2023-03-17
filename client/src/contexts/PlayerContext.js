@@ -32,7 +32,6 @@ const PlayerContextProvider = ({ children }) => {
   const getPlayers = async () => {
     try {
       const response = await axios.get(`${apiUrl}/phones`);
-      console.log(response);
       if (response.data.success) {
         dispatch({
           type: PLAYERS_LOADED_SUCCESS,
@@ -81,9 +80,7 @@ const PlayerContextProvider = ({ children }) => {
       const response = await axios.delete(`${apiUrl}/phones/${playerId}`);
       if (response.data.success)
         dispatch({ type: DELETE_PLAYER, payload: playerId });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   // //Update Player
@@ -118,7 +115,6 @@ const PlayerContextProvider = ({ children }) => {
       formdata.append("id", id);
 
       const response = await axios.put(`${apiUrl}/phones/${id}`, formdata);
-      console.log(response);
       if (response.data.success)
         dispatch({ type: UPDATE_PLAYER, payload: response.data.phone });
       return response.data;

@@ -33,7 +33,6 @@ const NationContextProvider = ({ children }) => {
   const getNations = async () => {
     try {
       const response = await axios.get(`${apiUrl}/categories`);
-      console.log(response);
       if (response.data.success) {
         dispatch({
           type: NATIONS_LOADED_SUCCESS,
@@ -78,7 +77,6 @@ const NationContextProvider = ({ children }) => {
       return response.data;
     } catch (error) {
       if (error.response.data) return error.response.data;
-      console.log(error);
     }
   };
 
@@ -107,7 +105,6 @@ const NationContextProvider = ({ children }) => {
       formdata.append("id", id);
 
       const response = await axios.put(`${apiUrl}/categories/${id}`, formdata);
-      console.log(response);
       if (response.data.success)
         dispatch({ type: UPDATE_NATION, payload: response.data.category });
       return response.data;

@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import OwlCarousel from "react-owl-carousel";
+import React, { useContext, useEffect } from "react";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { NationContext } from "../../contexts/NationContext";
-import { Carousel, Empty } from "antd";
+import { Empty } from "antd";
 import SingleNation from "./SingleNation";
-import TopNation from "./TopNation";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Nation = () => {
@@ -17,7 +15,7 @@ const Nation = () => {
   } = useContext(AuthContext);
   const { pathname } = useLocation();
   const {
-    nationState: { nations, nationsLoading },
+    nationState: { nations },
     getNations,
   } = useContext(NationContext);
   // Start: Get All nationss
@@ -34,31 +32,6 @@ const Nation = () => {
 
   return (
     <div>
-      <div class="page-heading">
-        {!isAdmin && (
-          <div class="featured-explore">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <h2 className="mb-5">Top 5 Nations in world cup 2022</h2>
-                  <Carousel autoplay autoplaySpeed={3000}>
-                    {nations.length !== 0 ? (
-                      nations
-                        .sort((a, b) => a.rank - b.rank)
-                        .reverse()
-                        .slice(0, 5)
-                        .map((nation) => <TopNation nation={nation} />)
-                    ) : (
-                      <Empty />
-                    )}
-                  </Carousel>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
       <div class="discover-items">
         <div class="container">
           <div class="row">
