@@ -53,7 +53,7 @@ const PlayerGuest = () => {
   } else if (searchNation !== "" && searchNation !== "All Nation") {
     if (searchNation !== "All Nation")
       body = players
-        .filter((i) => console.log(i))
+        .filter((i) => i.category === searchNation)
         .map((player) => <SinglePlayerGuest player={player} />);
   } else if (search !== "") {
     let charMap = {
@@ -214,7 +214,7 @@ const PlayerGuest = () => {
                 <option value="All Nation">All Brand</option>
                 {nations.length !== 0 &&
                   nations.map((nation) => (
-                    <option value={nation.name}>{nation.name}</option>
+                    <option value={nation._id}>{nation.name}</option>
                   ))}
               </select>
             </div>

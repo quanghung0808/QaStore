@@ -14,7 +14,7 @@ const Player = () => {
   const { pathname } = useLocation();
 
   const {
-    playerState: { players, playersLoading },
+    playerState: { players },
     getPlayers,
   } = useContext(PlayerContext);
   const [search, setSearch] = useState("");
@@ -150,9 +150,6 @@ const Player = () => {
     event.preventDefault();
     setSearch(event.target.value);
   };
-  function handleScroll(event) {
-    event.preventDefault();
-  }
 
   return (
     <div>
@@ -202,7 +199,7 @@ const Player = () => {
               </div>
             </div>
             <div class="col-lg-2" style={{ alignSelf: "center" }}>
-              <Select
+              <select
                 name="nation"
                 className="selectNation"
                 value={searchNation}
@@ -215,7 +212,7 @@ const Player = () => {
                 {nations.map((nation) => (
                   <option value={nation._id}>{nation.name}</option>
                 ))}
-              </Select>
+              </select>
               {/* <Select
                 onScroll={handleScroll}
                 onTouchMove={handleScroll}
