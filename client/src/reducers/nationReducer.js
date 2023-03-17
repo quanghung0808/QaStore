@@ -11,7 +11,7 @@ export const nationReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case NATIONS_LOADED_SUCCESS:
-      localStorage.setItem("Nations", JSON.stringify(payload));
+      localStorage.setItem("Categories", JSON.stringify(payload));
 
       return {
         ...state,
@@ -35,7 +35,7 @@ export const nationReducer = (state, action) => {
         nations: state.nations.filter((nation) => nation._id !== payload),
       };
     case FIND_NATION:
-      localStorage.setItem("NationDetail", JSON.stringify(payload));
+      localStorage.setItem("CategoryDetail", JSON.stringify(payload));
 
       return {
         ...state,

@@ -19,7 +19,7 @@ const NationDetailGuest = () => {
     <>
       <div class="item-details-page">
         <div class="container">
-          <div class="row">
+          <div class="row mt-5">
             <Button style={{ width: "100px", marginBottom: "10px" }}>
               <Link to="/nations" style={{ marginBottom: "10px" }}>
                 Back
@@ -31,24 +31,11 @@ const NationDetailGuest = () => {
               <div class="section-heading">
                 <div class="line-dec"></div>
                 <h2>
-                  View Details For<em> Nation</em> Here.
+                  View Details For<em> Brand</em> Here.
                 </h2>
               </div>
             </div>
-            <div class="col-lg-7">
-              <div class="left-image">
-                <img
-                  src={nation.image}
-                  alt=""
-                  style={{
-                    borderRadius: "20px%",
-                    width: "100%",
-                    height: "400px",
-                  }}
-                />
-              </div>
-            </div>
-            <div class="col-lg-5 align-self-center">
+            <div class="col-lg-12 align-self-center">
               <h3
                 style={{
                   marginBottom: "50px",
@@ -67,7 +54,7 @@ const NationDetailGuest = () => {
               >
                 {nation.description}
               </h5>
-              <div class="row">
+              {/* <div class="row">
                 <div class="col-12">
                   <span class="bid">
                     <span
@@ -89,7 +76,7 @@ const NationDetailGuest = () => {
                     <br />
                   </span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

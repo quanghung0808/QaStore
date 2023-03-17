@@ -10,7 +10,15 @@ const NavbarMenu = ({ modal, setModal }) => {
           <div class="col-12">
             <nav class="main-nav">
               <Link to="/" class="logo">
-                <img src="assets/images/fifa_logo.svg" alt="" />
+                <img
+                  style={{
+                    width: "100%",
+                    marginTop: "-140px",
+                    marginLeft: "15px",
+                  }}
+                  src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/Quang_H%C3%B9ng__2_-removebg-preview.png?alt=media&token=cbf7f91b-fd12-4d4d-871d-f2ab2e389d96"
+                  alt=""
+                />{" "}
               </Link>
 
               <ul class="nav">
@@ -25,7 +33,7 @@ const NavbarMenu = ({ modal, setModal }) => {
                     activeClassName="active"
                     className={location.pathname === "/:_id" ? "active" : ""}
                   >
-                    Players
+                    Phone
                   </NavLink>
                 </li>
                 <li>
@@ -34,9 +42,10 @@ const NavbarMenu = ({ modal, setModal }) => {
                     activeClassName="active"
                     className={location.pathname === "/:_id" ? "active" : ""}
                   >
-                    Nations
+                    Categories
                   </NavLink>
                 </li>
+
                 <li class="section-btn">
                   <a onClick={() => setModal(!modal)}>Sign in/Join</a>
                 </li>

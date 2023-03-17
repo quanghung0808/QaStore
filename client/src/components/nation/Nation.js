@@ -67,11 +67,11 @@ const Nation = () => {
                 <div class="line-dec"></div>
                 {isAdmin ? (
                   <h2>
-                    <em>Nations</em> Management
+                    <em>Category</em> Management
                   </h2>
                 ) : (
                   <h2>
-                    Discover World Cup 2022 <em>Nations</em>
+                    The Category Best In 2022 <em>Categories</em>
                   </h2>
                 )}
               </div>
@@ -86,7 +86,7 @@ const Nation = () => {
                       isActive={() => ["/nations"].includes(pathname)}
                       style={{ marginTop: "15px" }}
                     >
-                      Create new nation
+                      Create New Category
                     </NavLink>
                   )}
                 </div>

@@ -10,14 +10,18 @@ const ManageUser = () => {
       const response = await axios.get(`${apiUrl}/auth/users`);
       const dataResponse = response.data.users;
       let data = [];
+      data.push(dataResponse.find((u) => u.username === "admin123"));
+      const dataTmp = response.data.users.filter(
+        (x) => x.username !== "admin123"
+      );
+      console.log(data);
 
-      data.push(dataResponse.find((u) => u.username === "admin"));
-      const dataTmp = response.data.users.filter((x) => x.username !== "admin");
       data = data.concat(dataTmp).map((user, index) => ({
         ...user,
         key: index + 1,
         createdAt: user.createdAt.slice(0, 10),
       }));
+
       setUsers(data);
     }
     getAllUser();
@@ -51,7 +55,7 @@ const ManageUser = () => {
       dataIndex: "username",
       key: "username",
       render: (tag) =>
-        tag === "admin" ? (
+        tag === "admin123" ? (
           <Tag color={"red"} key={tag}>
             <h5 style={{ color: "red" }}>ADMIN</h5>
           </Tag>

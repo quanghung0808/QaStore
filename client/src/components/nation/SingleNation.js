@@ -52,16 +52,22 @@ const SingleNation = ({ nation }) => {
       <div class="item">
         <div className="row mb-3">
           <div class="col-2 ">
-            <p>Rank</p>
+            <p>Brand</p>
           </div>
           <div class="col-8 ">
-            <p className="ranking"> {nation.rank}</p>
+            {" "}
+            <p
+              className="text-end"
+              style={{ fontFamily: "fantasy", fontSize: "22px" }}
+            >
+              {nation.name}
+            </p>
           </div>
           <div class="col-2">
             {isAdmin && (
               <Popconfirm
                 title="Warning"
-                description="Are you sure to delete this nation?"
+                description="Are you sure to delete this category?"
                 open={open}
                 onConfirm={handleOk}
                 okButtonProps={{
@@ -77,24 +83,6 @@ const SingleNation = ({ nation }) => {
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12">
-            <span class="author"></span>
-            <img
-              src={nation.image}
-              alt=""
-              style={{ borderRadius: "20px", width: "100%", height: "150px" }}
-            />
-            <h4
-              style={{
-                textAlign: "center",
-                marginTop: "12px",
-                overflowWrap: "break-word",
-              }}
-            >
-              {nation.name}
-            </h4>
-          </div>
-
           <div class="col-lg-12">
             <div class="main-button" style={{ marginTop: "15px" }}>
               <Link

@@ -16,11 +16,14 @@ import ProtectedAdminRoute from "./components/routing/ProtectedAdminRoute";
 import ProfileView from "./views/ProfileView";
 import ManageUserView from "./views/ManageUserView";
 import UpdateNationView from "./views/UpdateNationView";
+import CartProvider from "./contexts/CartContext";
+import CartView from "./views/CartView";
 function App() {
   return (
     <AuthContextProvider>
       <PlayerContextProvider>
         <NationContextProvider>
+          <CartProvider>
           <Router>
             <Routes>
               <Route exact path="*" element={<Auth />} />
@@ -28,7 +31,10 @@ function App() {
                 path="/home"
                 element={<ProtectedRoute component={HomeUser} />}
               />
-
+              <Route
+                path="/cart"
+                element={<ProtectedRoute component={CartView} />}
+              />
               <Route path="/players" element={<PlayerView />} />
               <Route
                 path="/addPlayer"
@@ -63,6 +69,7 @@ function App() {
               />
             </Routes>
           </Router>
+          </CartProvider>
         </NationContextProvider>
       </PlayerContextProvider>
     </AuthContextProvider>

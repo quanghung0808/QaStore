@@ -25,7 +25,7 @@ const NationDetail = () => {
     <>
       <div class="item-details-page">
         <div class="container">
-          <div class="row">
+          <div class="row mt-5">
             <Button style={{ width: "100px", marginBottom: "10px" }}>
               <Link to="/nations" style={{ marginBottom: "10px" }}>
                 Back
@@ -37,24 +37,11 @@ const NationDetail = () => {
               <div class="section-heading">
                 <div class="line-dec"></div>
                 <h2>
-                  View Details For<em> Nation</em> Here.
+                  View Details For<em> Brand</em> Here.
                 </h2>
               </div>
             </div>
-            <div class="col-lg-7">
-              <div class="left-image">
-                <img
-                  src={nation.image}
-                  alt=""
-                  style={{
-                    borderRadius: "20px%",
-                    width: "100%",
-                    height: "400px",
-                  }}
-                />
-              </div>
-            </div>
-            <div class="col-lg-5 align-self-center">
+            <div class="col-lg-12 align-self-center">
               <h3
                 style={{
                   marginBottom: "50px",
@@ -73,7 +60,7 @@ const NationDetail = () => {
               >
                 {nation.description}
               </h5>
-              <div class="row">
+              {/* <div class="row">
                 <div class="col-12">
                   <span class="bid">
                     <span
@@ -95,7 +82,7 @@ const NationDetail = () => {
                     <br />
                   </span>
                 </div>
-              </div>
+              </div> */}
               {isAdmin && (
                 <Link
                   to={`/nations/update/${nation._id}`}
@@ -121,12 +108,12 @@ const NationDetail = () => {
               <div class="col-lg-8">
                 <div class="section-heading">
                   <div class="line-dec"></div>
-                  <h2>Create Nation & Put It On The All Nations View.</h2>
+                  <h2>Create Category & Put It On The All Categories View.</h2>
                 </div>
               </div>
               <div class="col-lg-4">
                 <div class="main-button" style={{ marginTop: "10px" }}>
-                  <Link to="/addNation">Create Nation Now</Link>
+                  <Link to="/addNation">Create Category Now</Link>
                 </div>
               </div>
             </div>

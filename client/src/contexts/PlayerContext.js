@@ -31,11 +31,12 @@ const PlayerContextProvider = ({ children }) => {
   //Get All Player
   const getPlayers = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/players`);
+      const response = await axios.get(`${apiUrl}/phones`);
+      console.log(response);
       if (response.data.success) {
         dispatch({
           type: PLAYERS_LOADED_SUCCESS,
-          payload: response.data.players,
+          payload: response.data.phones,
         });
       }
     } catch (error) {
@@ -51,17 +52,19 @@ const PlayerContextProvider = ({ children }) => {
     try {
       const formdata = new FormData();
       formdata.append("name", newPlayer.name);
-      formdata.append("position", newPlayer.position);
-      formdata.append("nation", newPlayer.nation);
-      formdata.append("goals", newPlayer.goals);
-      formdata.append("isCaptain", newPlayer.isCaptain);
+      formdata.append("price", newPlayer.price);
+      formdata.append("category", newPlayer.category);
+      formdata.append("os", newPlayer.os);
+      formdata.append("size", newPlayer.size);
+      formdata.append("pin", newPlayer.pin);
+      formdata.append("ram", newPlayer.ram);
       formdata.append("description", newPlayer.description);
       formdata.append("image", imageUrl);
-      const response = await axios.post(`${apiUrl}/players`, formdata);
+      const response = await axios.post(`${apiUrl}/phones`, formdata);
       if (response.data.success) {
         dispatch({
           type: ADD_PLAYER,
-          payload: response.data.player,
+          payload: response.data.phone,
         });
         return response.data;
       }
@@ -75,7 +78,7 @@ const PlayerContextProvider = ({ children }) => {
   // Delete player
   const deletePlayer = async (playerId) => {
     try {
-      const response = await axios.delete(`${apiUrl}/players/${playerId}`);
+      const response = await axios.delete(`${apiUrl}/phones/${playerId}`);
       if (response.data.success)
         dispatch({ type: DELETE_PLAYER, payload: playerId });
     } catch (error) {
@@ -104,18 +107,20 @@ const PlayerContextProvider = ({ children }) => {
     try {
       const formdata = new FormData();
       formdata.append("name", updatedPlayer.name);
-      formdata.append("position", updatedPlayer.position);
-      formdata.append("nation", updatedPlayer.nation);
-      formdata.append("goals", updatedPlayer.goals);
-      formdata.append("isCaptain", updatedPlayer.isCaptain);
+      formdata.append("price", updatedPlayer.price);
+      formdata.append("category", updatedPlayer.category);
+      formdata.append("os", updatedPlayer.os);
+      formdata.append("size", updatedPlayer.size);
+      formdata.append("pin", updatedPlayer.pin);
+      formdata.append("ram", updatedPlayer.ram);
       formdata.append("description", updatedPlayer.description);
       formdata.append("image", imageUrl);
       formdata.append("id", id);
 
-      const response = await axios.put(`${apiUrl}/players/${id}`, formdata);
+      const response = await axios.put(`${apiUrl}/phones/${id}`, formdata);
       console.log(response);
       if (response.data.success)
-        dispatch({ type: UPDATE_PLAYER, payload: response.data.player });
+        dispatch({ type: UPDATE_PLAYER, payload: response.data.phone });
       return response.data;
     } catch (error) {
       return error.response.data
@@ -125,7 +130,7 @@ const PlayerContextProvider = ({ children }) => {
   };
   //Find Player When user updating player
   const findPlayer = (playerId) => {
-    const player = JSON.parse(localStorage.getItem("Players")).find(
+    const player = JSON.parse(localStorage.getItem("Phones")).find(
       (player) => player._id === playerId
     );
 

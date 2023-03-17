@@ -282,7 +282,7 @@ section {
 }
 
 .section-heading h2 em {
-  color: #9a0346;
+  color: #707070;
   font-style: normal;
 }
 
@@ -503,7 +503,7 @@ Header Style
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
   color: #fff;
-  background-color: #5d001d;
+  background-color: #555555;
 }
 
 .background-header .main-nav .nav li:hover a,
@@ -1279,7 +1279,7 @@ Footer Style
 
 footer {
   background: rgb(125, 90, 254);
-  background: linear-gradient(132deg, rgb(0 0 0) 25%, rgb(113 0 35) 100%);
+  background: linear-gradient(132deg, rgb(0 0 0) 25%, rgb(74, 74, 74) 100%);
   text-align: center;
   padding: 25px 0px;
 }
@@ -1773,8 +1773,8 @@ Details Page Style
 .item-details-page button {
   font-size: 14px;
   color: #fff;
-  background-color: #9a0346;
-  border: 1px solid #9a0346;
+  background-color: #000000;
+  border: 1px solid #ffffff;
   padding: 12px 30px;
   display: inline-block;
   border-radius: 25px;
@@ -2257,7 +2257,7 @@ input[type="radio"] {
 .ant-select-single {
   padding-left: 50px !important;
   margin-bottom: 35px;
-  width: 100% !important;
+  width: 200px !important;
 }
 
 .selectNation {
@@ -2265,5 +2265,4 @@ input[type="radio"] {
   font-size: medium;
   margin-bottom: 33px;
   height: 33px;
-  margin-left: 30px;
 }

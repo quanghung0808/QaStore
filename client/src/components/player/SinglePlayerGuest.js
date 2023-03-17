@@ -3,9 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PlayerContext } from "../../contexts/PlayerContext";
+import { NationContext } from "../../contexts/NationContext";
+
 import "./player.css";
+import { Button } from "antd";
 
 const SinglePlayerGuest = ({ player }) => {
+  const {
+    nationState: { nations },
+    getNations,
+  } = useContext(NationContext);
   const navigate = useNavigate();
   const { deletePlayer, setShowToast } = useContext(PlayerContext);
   const position = player.position + "";
@@ -39,51 +46,28 @@ const SinglePlayerGuest = ({ player }) => {
 
   return (
     <div class="col-lg-4">
-      <div style={{ marginLeft: "15px" }}>
-        <div class="wrapperPlayer">
-          <div class="cardPlayer">
-            <div
-              class="front"
-              style={{ backgroundImage: `url("${player.image}")` }}
+      <div>
+        <div class="cardPlayer">
+          <div class="single-item">
+            <img src={player.image} width="350px" height="300px" alt="" />
+            <div class="name">{player.name}</div>
+            <div class="price">{player.price.toLocaleString("vi-VN")}VNĐ</div>
+            <div class="">Screen Size: {player.size} inch</div>
+            <div class="">Operating System: {player.os}</div>
+            {nations
+              .filter((nation) => nation._id === player.category)
+              .map((index) => (
+                <div class="">Brand: {index.name}</div>
+              ))}
+            <div class=" mb-5">RAM: {player.ram} GB</div>
+
+            <Button
+              className="mb-3 mt-3 btn btn-danger"
+              style={{ marginLeft: "120px" }}
+              onClick={handleClick}
             >
-              <h2>{player.name}</h2>
-              <p>{player.nation}</p>
-              <p class="price">{matches[1]}</p>
-            </div>
-            <div class="right">
-              <h2>{player.name}</h2>
-
-              <ul>
-                <li>Nation: {player.nation}</li>
-                <li>Position: {player.position}</li>
-                <li>Total Goals: {player.goals}</li>
-                <li>
-                  Is captain:{" "}
-                  {player.isCaptain === "true" ? (
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      style={{
-                        color: "#a0ffa0",
-                        fontSize: "22px",
-                      }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      style={{
-                        color: "red",
-                        fontSize: "22px",
-                        verticalAlign: "bottom",
-                      }}
-                    />
-                  )}
-                </li>
-              </ul>
-
-              <button className="viewDetailUserRole" onClick={handleClick}>
-                Details
-              </button>
-            </div>
+              Details
+            </Button>
           </div>
         </div>
       </div>

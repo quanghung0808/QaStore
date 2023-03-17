@@ -49,7 +49,7 @@ const NationGuest = () => {
           <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
-                <h2 className="mb-5">Top 5 Nations in world cup 2022</h2>
+                {/* <h2 className="mb-5">Top 5 Brand in 2022</h2>
                 <Carousel autoplay autoplaySpeed={3000}>
                   {nations.length !== 0 ? (
                     nations
@@ -60,7 +60,7 @@ const NationGuest = () => {
                   ) : (
                     <Empty />
                   )}
-                </Carousel>
+                </Carousel> */}
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ const NationGuest = () => {
                 <div class="line-dec"></div>
 
                 <h2>
-                  Discover World Cup 2022 <em>Nations</em>
+                  The popular brand 2022 <em>Best Of Brand</em>
                 </h2>
               </div>
             </div>

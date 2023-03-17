@@ -117,7 +117,7 @@ const AuthModal = ({ modal, setModal }) => {
                 <div class="row">
                   <div class="col-md-12 col-sm-12">
                     <div class="modal-title">
-                      <h2 className="text-red-600">World cup 2022</h2>
+                      <h2 className="text-red-600">QA MOBILE</h2>
                     </div>
 
                     <ul class="nav nav-tabs" role="tablist">

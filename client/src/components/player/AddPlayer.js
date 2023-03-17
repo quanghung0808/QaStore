@@ -33,13 +33,15 @@ const AddPlayer = () => {
 
   const [newPlayer, setNewPlayer] = useState({
     name: "",
-    position: "",
-    nation: "",
-    goals: "0",
-    isCaptain: false,
+    price: "0",
+    category: "",
+    os: "",
+    size: "0",
+    pin: "0",
+    ram: "0",
     description: "",
   });
-  const { name, position, nation, goals, isCaptain, description } = newPlayer;
+  const { name, price, category, os, size, pin, ram, description } = newPlayer;
   const onChangeNewPlayerForm = (event) => {
     setNewPlayer({ ...newPlayer, [event.target.name]: event.target.value });
   };
@@ -107,7 +109,7 @@ const AddPlayer = () => {
                           name="name"
                           value={name}
                           onChange={onChangeNewPlayerForm}
-                          pattern="^[^0-9]+$"
+                          // pattern="^[^0-9]+$"
                           title="Not accept number"
                           minLength={1}
                           maxLength={40}
@@ -120,52 +122,32 @@ const AddPlayer = () => {
 
                     <div className="col-lg-12">
                       <fieldset>
-                        <label for="position">Position</label>
-                        <select
-                          name="position"
-                          id="position"
-                          required
-                          value={position}
+                        <label for="price">Price</label>
+                        <input
+                          value={price}
                           onChange={onChangeNewPlayerForm}
-                        >
-                          <option value="" disabled selected>
-                            Select Position
-                          </option>
-                          <option value="Goalkeeper (GK)">
-                            Goalkeeper (GK)
-                          </option>
-                          <option value="Center Back (CB)">
-                            Center Back (CB)
-                          </option>
-                          <option value="Full Back (FB)">Full Back (FB)</option>
-                          <option value="Wing Back (WB)">Wing Back (WB)</option>
-                          <option value="Defensive Midfielder (DM)">
-                            Defensive Midfielder (DM)
-                          </option>
-                          <option value="Central Midfielder (CM)">
-                            Central Midfielder (CM)
-                          </option>
-                          <option value="Attacking Midfielder (AM)">
-                            Attacking Midfielder (AM)
-                          </option>
-                          <option value="Winger (WG)">Winger (WG)</option>
-                          <option value="Forward (FW)">Forward (FW)</option>
-                          <option value="Striker (ST)">Striker (ST)</option>
-                        </select>
+                          type="number"
+                          name="price"
+                          id="price"
+                          placeholder="Enter Player's price"
+                          required
+                          // min="0"
+                          // max="1000"
+                        />
                       </fieldset>
                     </div>
                     <div className="col-lg-12">
                       <fieldset>
-                        <label for="nation">Nation</label>
+                        <label for="category">Category</label>
                         <select
-                          name="nation"
-                          id="nation"
+                          name="category"
+                          id="category"
                           required
-                          value={nation}
+                          value={category}
                           onChange={onChangeNewPlayerForm}
                         >
                           <option value="" disabled selected>
-                            Select Nation
+                            Select category
                           </option>
                           {nations.map((nation) => (
                             <option value={nation._id}>{nation.name}</option>
@@ -173,44 +155,70 @@ const AddPlayer = () => {
                         </select>
                       </fieldset>
                     </div>
-
                     <div className="col-lg-6">
                       <fieldset>
-                        <label for="goals">Goals</label>
+                        <label for="os">Operating System</label>
+                        <select
+                          name="os"
+                          id="os"
+                          required
+                          value={os}
+                          onChange={onChangeNewPlayerForm}
+                        >
+                          <option value="" disabled selected>
+                            Select Operating System
+                          </option>
+                          <option value="Android">Android</option>
+                          <option value="Ios">Ios</option>
+                        </select>
+                      </fieldset>
+                    </div>
+                    <div className="col-lg-6">
+                      <fieldset>
+                        <label for="size">Size</label>
                         <input
-                          value={goals}
+                          value={size}
                           onChange={onChangeNewPlayerForm}
                           type="number"
-                          name="goals"
-                          id="goals"
-                          placeholder="Enter Player's Goals"
+                          name="size"
+                          id="size"
+                          placeholder="Enter Screen's size"
                           required
-                          min="0"
-                          max="1000"
+                          // min="0"
+                          // max="1000"
                         />
                       </fieldset>
                     </div>
                     <div className="col-lg-6">
                       <fieldset>
-                        <div className="form-check form-switch">
-                          <label for="captain">
-                            Check if this player is captain
-                          </label>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            value={isCaptain}
-                            checked={isCaptain}
-                            onChange={(event) => {
-                              setNewPlayer({
-                                ...newPlayer,
-                                isCaptain: !isCaptain,
-                              });
-                            }}
-                            id="captain"
-                            name="isCaptain"
-                          />
-                        </div>
+                        <label for="pin">Pin</label>
+                        <input
+                          value={pin}
+                          onChange={onChangeNewPlayerForm}
+                          type="number"
+                          name="pin"
+                          id="pin"
+                          placeholder="Enter Phone's pin"
+                          required
+                          // min="0"
+                          // max="1000"
+                        />
+                      </fieldset>
+                    </div>
+                    <div className="col-lg-6">
+                      <fieldset>
+                        <label for="ram">Ram</label>
+                        <input
+                          value={ram}
+                          onChange={onChangeNewPlayerForm}
+                          type="number"
+                          name="ram"
+                          id="ram"
+                          placeholder="Enter Phone's ram"
+                          required
+                          min="0"
+                          max="1000"
+                        />
                       </fieldset>
                     </div>
                   </div>
@@ -226,7 +234,7 @@ const AddPlayer = () => {
                       required
                       onChange={handleChange}
                     />
-                    <img src={url} height="255px" width="500px" />
+                    <img src={url} height="345px" width="500px" />
                   </div>
                 </div>
                 <div className="col-lg-12">

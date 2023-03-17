@@ -32,11 +32,12 @@ const NationContextProvider = ({ children }) => {
   //Get All Nation
   const getNations = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/nations`);
+      const response = await axios.get(`${apiUrl}/categories`);
+      console.log(response);
       if (response.data.success) {
         dispatch({
           type: NATIONS_LOADED_SUCCESS,
-          payload: response.data.nations,
+          payload: response.data.categorys,
         });
       }
     } catch (error) {
@@ -48,18 +49,16 @@ const NationContextProvider = ({ children }) => {
   };
 
   //Add Nation
-  const addNation = async (newNation, imageUrl) => {
+  const addNation = async (newNation) => {
     try {
       const formdata = new FormData();
       formdata.append("name", newNation.name);
-      formdata.append("rank", newNation.rank);
       formdata.append("description", newNation.description);
-      formdata.append("image", imageUrl);
-      const response = await axios.post(`${apiUrl}/nations`, formdata);
+      const response = await axios.post(`${apiUrl}/categories`, formdata);
       if (response.data.success) {
         dispatch({
           type: ADD_NATION,
-          payload: response.data.nation,
+          payload: response.data.category,
         });
         return response.data;
       }
@@ -73,7 +72,7 @@ const NationContextProvider = ({ children }) => {
   // Delete nation
   const deleteNation = async (nationId) => {
     try {
-      const response = await axios.delete(`${apiUrl}/nations/${nationId}`);
+      const response = await axios.delete(`${apiUrl}/categories/${nationId}`);
       if (response.data.success)
         dispatch({ type: DELETE_NATION, payload: nationId });
       return response.data;
@@ -100,19 +99,17 @@ const NationContextProvider = ({ children }) => {
   //   }
   // };
   //Update Nation
-  const updateNation = async (updatedNation, imageUrl, id) => {
+  const updateNation = async (updatedNation, id) => {
     try {
       const formdata = new FormData();
       formdata.append("name", updatedNation.name);
-      formdata.append("rank", updatedNation.rank);
       formdata.append("description", updatedNation.description);
-      formdata.append("image", imageUrl);
       formdata.append("id", id);
 
-      const response = await axios.put(`${apiUrl}/nations/${id}`, formdata);
+      const response = await axios.put(`${apiUrl}/categories/${id}`, formdata);
       console.log(response);
       if (response.data.success)
-        dispatch({ type: UPDATE_NATION, payload: response.data.nation });
+        dispatch({ type: UPDATE_NATION, payload: response.data.category });
       return response.data;
     } catch (error) {
       return error.response.data
@@ -122,7 +119,7 @@ const NationContextProvider = ({ children }) => {
   };
   //Find Nation When user updating nation
   const findNation = (nationId) => {
-    const nation = JSON.parse(localStorage.getItem("Nations")).find(
+    const nation = JSON.parse(localStorage.getItem("Categories")).find(
       (nation) => nation._id === nationId
     );
     dispatch({ type: FIND_NATION, payload: nation });

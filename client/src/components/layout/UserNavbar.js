@@ -1,11 +1,14 @@
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect } from "react";
-import { Avatar, Dropdown, Menu } from "antd";
+import { Avatar, Button, Dropdown, Menu } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { CartContext } from "../../contexts/CartContext";
 
 const UserNavbar = () => {
+  const { cartItems } = useContext(CartContext);
+
   const location = useLocation();
 
   useEffect(() => {
@@ -45,14 +48,25 @@ const UserNavbar = () => {
                 isAdmin ? (
                   <Link to="/#" class="logo">
                     <img
-                      src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/fifa_logo.svg?alt=media&token=a7006217-2443-4567-a7dd-2a32bb186e28"
+                      style={{
+                        width: "100%",
+                        marginTop: "-140px",
+                        marginLeft: "15px",
+                      }}
+                      src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/Quang_H%C3%B9ng__2_-removebg-preview.png?alt=media&token=cbf7f91b-fd12-4d4d-871d-f2ab2e389d96"
                       alt=""
-                    />
+                    />{" "}
                   </Link>
                 ) : (
                   <Link to="/home" class="logo">
                     <img
-                      src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/fifa_logo.svg?alt=media&token=a7006217-2443-4567-a7dd-2a32bb186e28"
+                      style={{
+                        width: "285px",
+                        marginTop: "-115px",
+                        marginLeft: "15px",
+                        marginBottom: "2px",
+                      }}
+                      src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/Quang_H%C3%B9ng__2_-removebg-preview.png?alt=media&token=cbf7f91b-fd12-4d4d-871d-f2ab2e389d96"
                       alt=""
                     />
                   </Link>
@@ -60,7 +74,13 @@ const UserNavbar = () => {
               ) : (
                 <Link to="/" class="logo">
                   <img
-                    src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/fifa_logo.svg?alt=media&token=a7006217-2443-4567-a7dd-2a32bb186e28"
+                    style={{
+                      width: "285px",
+                      height: "94px",
+                      marginTop: "-115px",
+                      marginLeft: "15px",
+                    }}
+                    src="https://firebasestorage.googleapis.com/v0/b/assignment-3-9e1d7.appspot.com/o/Quang_H%C3%B9ng__2_-removebg-preview.png?alt=media&token=cbf7f91b-fd12-4d4d-871d-f2ab2e389d96"
                     alt=""
                   />
                 </Link>
@@ -76,10 +96,11 @@ const UserNavbar = () => {
                     </NavLink>
                   </li>
                 )}
+
                 {isAdmin && (
                   <li>
                     <NavLink to="/users" activeClassName="active">
-                      Manage Users
+                      Manage User
                     </NavLink>
                   </li>
                 )}
@@ -95,7 +116,7 @@ const UserNavbar = () => {
                           : ""
                       }
                     >
-                      Manage Players
+                      Manage Phone
                     </NavLink>
                   </li>
                 ) : (
@@ -110,7 +131,7 @@ const UserNavbar = () => {
                           : ""
                       }
                     >
-                      Players
+                      Phone
                     </NavLink>
                   </li>
                 )}
@@ -127,7 +148,7 @@ const UserNavbar = () => {
                           : ""
                       }
                     >
-                      Manage Nations
+                      Manage Category
                     </NavLink>
                   </li>
                 ) : (
@@ -142,7 +163,22 @@ const UserNavbar = () => {
                           : ""
                       }
                     >
-                      Nations
+                      Category
+                    </NavLink>
+                  </li>
+                )}
+                {isAdmin ? (
+                  <></>
+                ) : (
+                  <li>
+                    <NavLink to="/cart" activeClassName="active">
+                      <CartContext.Consumer>
+                        {({ getCart, cartItems }) => (
+                          <div onClick={getCart}>
+                            <div>Cart ({cartItems.length})</div>
+                          </div>
+                        )}
+                      </CartContext.Consumer>
                     </NavLink>
                   </li>
                 )}

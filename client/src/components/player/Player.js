@@ -44,7 +44,7 @@ const Player = () => {
   } else if (searchNation !== "" && searchNation !== "All Nation") {
     if (searchNation !== "All Nation")
       body = players
-        .filter((i) => i.nation === searchNation)
+        .filter((i) => i.category === searchNation)
         .map((player) => <SinglePlayer player={player} />);
   } else if (search !== "") {
     let charMap = {
@@ -162,7 +162,7 @@ const Player = () => {
             <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12">
-                  <h2 className="mb-5">Top 5 Players in world cup 2022</h2>
+                  <h2 className="mb-5">Top 5 Phones' Popular 2022</h2>
 
                   {players.length !== 0 ? (
                     <Carousel effect="fade" autoplay autoplaySpeed={2500}>
@@ -187,35 +187,35 @@ const Player = () => {
       <div class="discover-items">
         <div class="container">
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
               <div class="section-heading">
                 <div class="line-dec"></div>
                 {isAdmin ? (
                   <h2>
-                    <em>Players</em> Management
+                    <em>Phone</em> Management
                   </h2>
                 ) : (
                   <h2>
-                    Discover World Cup 2022 <em>Players</em>
+                    The Smart Phone in 2022 <em>Phones' Popular</em>
                   </h2>
                 )}
               </div>
             </div>
             <div class="col-lg-2" style={{ alignSelf: "center" }}>
-              <select
+              <Select
                 name="nation"
                 className="selectNation"
                 value={searchNation}
                 onChange={(e) => setSearchNation(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Nation
+                  Select Category
                 </option>
-                <option value="All Nation">All Nation</option>
+                <option value="All Nation">All Category</option>
                 {nations.map((nation) => (
-                  <option value={nation.name}>{nation.name}</option>
+                  <option value={nation._id}>{nation.name}</option>
                 ))}
-              </select>
+              </Select>
               {/* <Select
                 onScroll={handleScroll}
                 onTouchMove={handleScroll}
@@ -227,15 +227,15 @@ const Player = () => {
                 options={nations.map((i) => ({ value: i.name, label: i.name }))}
               /> */}
             </div>
-            <div class="col-lg-3" style={{ alignSelf: "center" }}>
+            <div
+              class="col-lg-3"
+              style={{ alignSelf: "center", marginLeft: "30px" }}
+            >
               <Search
-                placeholder="Search by player name"
+                placeholder="Search by phone name"
                 allowClear
                 enterButton="Search"
                 onChange={onSearch}
-                style={{
-                  width: 304,
-                }}
               />
             </div>
             <div class="col-lg-3">
@@ -248,7 +248,7 @@ const Player = () => {
                       isActive={() => ["/players"].includes(pathname)}
                       style={{ marginTop: "15px" }}
                     >
-                      Create new player
+                      Create new phone
                     </NavLink>
                   )}
                 </div>

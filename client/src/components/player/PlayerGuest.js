@@ -42,7 +42,7 @@ const PlayerGuest = () => {
   // Start: Get All nationss
   useEffect(() => {
     getNations();
-    console.log();
+    console.log(nations);
   }, []);
   // Start: Get All playerss
   useEffect(() => {
@@ -54,7 +54,7 @@ const PlayerGuest = () => {
   } else if (searchNation !== "" && searchNation !== "All Nation") {
     if (searchNation !== "All Nation")
       body = players
-        .filter((i) => i.nation === searchNation)
+        .filter((i) => console.log(i))
         .map((player) => <SinglePlayerGuest player={player} />);
   } else if (search !== "") {
     let charMap = {
@@ -172,7 +172,7 @@ const PlayerGuest = () => {
           <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
-                <h2 className="mb-5">Top 5 Players in world cup 2022</h2>
+                <h2 className="mb-5">Top 5 Phone in the world 2022</h2>
 
                 {players.length !== 0 ? (
                   <Carousel effect="fade" autoplay autoplaySpeed={2500}>
@@ -200,7 +200,7 @@ const PlayerGuest = () => {
               <div class="section-heading">
                 <div class="line-dec"></div>
                 <h2>
-                  Discover World Cup 2022 <em>Players</em>
+                  The Smart Phone in 2022
                 </h2>
               </div>
             </div>
@@ -212,17 +212,18 @@ const PlayerGuest = () => {
                 onChange={(e) => setSearchNation(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select Nation
+                  Select Brand
                 </option>
-                <option value="All Nation">All Nation</option>
-                {nations.map((nation) => (
-                  <option value={nation.name}>{nation.name}</option>
-                ))}
+                <option value="All Nation">All Brand</option>
+                {nations.length !== 0 &&
+                  nations.map((nation) => (
+                    <option value={nation.name}>{nation.name}</option>
+                  ))}
               </select>
             </div>
             <div class="col-lg-3" style={{ alignSelf: "center" }}>
               <Search
-                placeholder="Search by player name"
+                placeholder="Search by phone name"
                 allowClear
                 enterButton="Search"
                 onChange={onSearch}

@@ -107,6 +107,7 @@ const login = async (req, res) => {
       success: true,
       message: "User logged in successfully",
       accessToken,
+      user
     });
   } catch (error) {
     console.log(error);

@@ -1,6 +1,7 @@
 export const apiUrl = "http://localhost:5000/api";
 
 export const LOCAL_STORAGE_TOKEN_NAME = "worldcup2022";
+export const LOCAL_STORAGE_USER= "User";
 export const POSTS_LOADED_SUCCESS = "POSTS_LOADED_SUCCESS";
 export const POSTS_LOADED_FAIL = "POSTS_LOADED_FAIL";
 export const ADD_POST = "ADD_POST";
@@ -21,3 +22,8 @@ export const ADD_NATION = "ADD_NATION";
 export const DELETE_NATION = "DELETE_NATION";
 export const UPDATE_NATION = "UPDATE_NATION";
 export const FIND_NATION = "FIND_NATION";
+
+export const ADD_CART = "ADD_CART";
+export const CART_DETAIL = "CART_DETAIL";
+
+

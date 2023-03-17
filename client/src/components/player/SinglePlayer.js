@@ -1,11 +1,12 @@
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Popconfirm } from "antd";
+import { Button, Popconfirm } from "antd";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { NationContext } from "../../contexts/NationContext";
 import { PlayerContext } from "../../contexts/PlayerContext";
+import { CartContext } from "../../contexts/CartContext";
 import "./player.css";
 
 const SinglePlayer = ({ player }) => {
@@ -55,85 +56,67 @@ const SinglePlayer = ({ player }) => {
 
   return (
     <div class="col-lg-4">
-      <div style={{ marginLeft: "15px" }}>
-        <div class="wrapperPlayer">
-          <div class="cardPlayer">
-            <div
-              class="front"
-              style={{ backgroundImage: `url("${player.image}")` }}
-            >
-              <h2>{player.name}</h2>
-              <p>
-                {nations
-                  .filter((nation) => nation._id === player.nation)
-                  .map((index) => (
-                    <>{index.name}</>
-                  ))}
-              </p>
-              <p class="price">{matches[1]}</p>
-            </div>
-            <div class="right">
-              <h2>{player.name}</h2>
+      <div>
+        <div class="cardPlayer">
+          <div class="single-item">
+            <img src={player.image} width="350px" height="300px" alt="" />
+            <div class="name">{player.name}</div>
+            <div class="price">{player.price.toLocaleString("vi-VN")}VNĐ</div>
+            <div class="">Screen Size: {player.size} inch</div>
+            <div class="">Operating System: {player.os}</div>
+            {nations
+              .filter((nation) => nation._id === player.category)
+              .map((index) => (
+                <div class="">Brand: {index.name}</div>
+              ))}
+            <div class=" mb-5">RAM: {player.ram} GB</div>
 
-              <ul>
-                <li>
-                  Nation:
-                  {nations
-                    .filter((nation) => nation._id === player.nation)
-                    .map((index) => (
-                      <>{index.name}</>
-                    ))}
-                </li>
-                <li>Position: {player.position}</li>
-                <li>Total Goals: {player.goals}</li>
-                <li>
-                  Is captain:{" "}
-                  {player.isCaptain === "true" ? (
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      style={{
-                        color: "#a0ffa0",
-                        fontSize: "22px",
-                      }}
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      style={{
-                        color: "red",
-                        fontSize: "22px",
-                        verticalAlign: "bottom",
-                      }}
-                    />
-                  )}
-                </li>
-              </ul>
-              {isAdmin && (
-                <Popconfirm
-                  title="Warning"
-                  description="Are you sure to delete this player?"
-                  open={open}
-                  onConfirm={handleOk}
-                  okButtonProps={{
-                    loading: confirmLoading,
-                  }}
-                  onCancel={handleCancel}
-                >
-                  <button onClick={showPopconfirm} className="delete">
-                    Delete
-                  </button>
-                </Popconfirm>
-              )}
-              {isAdmin ? (
-                <button className="viewDetail" onClick={handleClick}>
-                  Details
-                </button>
-              ) : (
-                <button className="viewDetailUserRole" onClick={handleClick}>
-                  Details
-                </button>
-              )}
-            </div>
+            {!isAdmin && (
+              <CartContext.Consumer>
+                {({ addToCart }) => (
+                  <Button
+                    style={{ marginLeft: "58px" }}
+                    onClick={async () => await addToCart(player)}
+                    className="btn btn-primary"
+                  >
+                    ADD TO CART
+                  </Button>
+                )}
+              </CartContext.Consumer>
+            )}
+
+            {isAdmin ? (
+              <Button
+                style={{ marginLeft: "80px" }}
+                className="mb-3 mt-3 btn btn-danger"
+                onClick={handleClick}
+              >
+                Details
+              </Button>
+            ) : (
+              <Button
+                className="mb-3 mt-3 btn btn-danger"
+                onClick={handleClick}
+              >
+                Details
+              </Button>
+            )}
+            {isAdmin && (
+              <Popconfirm
+                title="Warning"
+                description="Are you sure to delete this phone?"
+                open={open}
+                onConfirm={handleOk}
+                okButtonProps={{
+                  loading: confirmLoading,
+                }}
+                onCancel={handleCancel}
+              >
+                <Button className="mb-3" onClick={showPopconfirm}>
+                  Delete
+                </Button>
+              </Popconfirm>
+            )}
           </div>
         </div>
       </div>

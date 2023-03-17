@@ -10,7 +10,7 @@ import { NationContext } from "../../contexts/NationContext";
 
 const UpdatePlayer = () => {
   const [allNation, setAllNation] = useState(
-    JSON.parse(localStorage.getItem("Nations"))
+    JSON.parse(localStorage.getItem("Categories"))
   );
   //contexts
   const {
@@ -33,21 +33,23 @@ const UpdatePlayer = () => {
 
   const [newPlayer, setNewPlayer] = useState({
     name: player.name,
-    position: player.position,
-    nation: player.nation,
-    goals: player.goals,
-    isCaptain: player.isCaptain,
+    price: player.price,
+    category: player.category,
+    os: player.os,
+    size: player.size,
+    pin: player.pin,
+    ram: player.ram,
     description: player.description,
   });
   const { getNations } = useContext(NationContext);
   // Start: Get All nationss
   useEffect(() => {
     getNations();
-    setAllNation(JSON.parse(localStorage.getItem("Nations")));
+    setAllNation(JSON.parse(localStorage.getItem("Categories")));
   }, []);
   useEffect(() => {
     findPlayer(currentURL);
-    const data = localStorage.getItem("PlayerDetail");
+    const data = localStorage.getItem("PhoneDetail");
     console.log(data);
     if (data !== "undefined") {
       setNewPlayer(JSON.parse(data));
@@ -55,7 +57,7 @@ const UpdatePlayer = () => {
     }
   }, []);
 
-  const { name, position, nation, goals, isCaptain, description } = newPlayer;
+  const { name, price, category, os, size, pin, ram, description } = newPlayer;
   const onChangeNewPlayerForm = (event) => {
     setNewPlayer({ ...newPlayer, [event.target.name]: event.target.value });
   };
@@ -132,10 +134,10 @@ const UpdatePlayer = () => {
               </div>
             </div>
             <form id="contact" onSubmit={onSubmit}>
-              <div class="col-lg-12">
-                <div class="col-lg-6">
-                  <div class="row">
-                    <div class="col-lg-12">
+              <div className="col-lg-12">
+                <div className="col-lg-6">
+                  <div className="row">
+                    <div className="col-lg-12">
                       <fieldset>
                         <label for="name">Name</label>
                         <input
@@ -143,8 +145,10 @@ const UpdatePlayer = () => {
                           name="name"
                           value={name}
                           onChange={onChangeNewPlayerForm}
-                          pattern="[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s|_]{6,40}"
-                          title="Not accept number and special character, min length is 6. max length is 40"
+                          pattern="^[^0-9]+$"
+                          title="Not accept number"
+                          minLength={1}
+                          maxLength={40}
                           id="name"
                           placeholder="Player Name"
                           required
@@ -152,138 +156,147 @@ const UpdatePlayer = () => {
                       </fieldset>
                     </div>
 
-                    <div class="col-lg-12">
+                    <div className="col-lg-12">
                       <fieldset>
-                        <label for="position">Position</label>
-                        <select
-                          name="position"
-                          id="position"
-                          required
-                          value={position}
-                          onChange={onChangeNewPlayerForm}
-                        >
-                          <option value="" disabled selected>
-                            Select Position
-                          </option>
-                          <option value="Goalkeeper (GK)">
-                            Goalkeeper (GK)
-                          </option>
-                          <option value="Center Back (CB)">
-                            Center Back (CB)
-                          </option>
-                          <option value="Full Back (FB)">Full Back (FB)</option>
-                          <option value="Wing Back (WB)">Wing Back (WB)</option>
-                          <option value="Defensive Midfielder (DM)">
-                            Defensive Midfielder (DM)
-                          </option>
-                          <option value="Central Midfielder (CM)">
-                            Central Midfielder (CM)
-                          </option>
-                          <option value="Attacking Midfielder (AM)">
-                            Attacking Midfielder (AM)
-                          </option>
-                          <option value="Winger (WG)">Winger (WG)</option>
-                          <option value="Forward (FW)">Forward (FW)</option>
-                          <option value="Striker (ST)">Striker (ST)</option>
-                        </select>
-                      </fieldset>
-                    </div>
-                    <div class="col-lg-12">
-                      <fieldset>
-                        <label for="nation">Nation</label>
-                        <select
-                          name="nation"
-                          id="nation"
-                          required
-                          value={nation}
-                          onChange={onChangeNewPlayerForm}
-                        >
-                          <option value="" disabled selected>
-                            Select Nation
-                          </option>
-                          {allNation.map((nation) => (
-                            <option value={nation.name}>{nation.name}</option>
-                          ))}
-                        </select>
-                      </fieldset>
-                    </div>
-
-                    <div class="col-lg-6">
-                      <fieldset>
-                        <label for="goals">Goals</label>
+                        <label for="price">Price</label>
                         <input
-                          value={goals}
+                          value={price}
                           onChange={onChangeNewPlayerForm}
                           type="number"
-                          name="goals"
-                          id="goals"
-                          placeholder="Enter Player's Goals"
+                          name="price"
+                          id="price"
+                          placeholder="Enter Player's price"
                           required
                           min="0"
                           max="1000"
                         />
                       </fieldset>
                     </div>
-                    <div class="col-lg-6">
+                    <div className="col-lg-12">
                       <fieldset>
-                        <div class="form-check form-switch">
-                          <label for="captain">
-                            Check if this player is captain
-                          </label>
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            value={isCaptain}
-                            defaultChecked={isCaptain === "true"}
-                            onChange={() => {
-                              setNewPlayer({
-                                ...newPlayer,
-                                isCaptain: !isCaptain,
-                              });
-                            }}
-                            id="captain"
-                            name="isCaptain"
-                          />
-                        </div>
+                        <label for="category">Category</label>
+                        <select
+                          name="category"
+                          id="category"
+                          required
+                          value={category}
+                          onChange={onChangeNewPlayerForm}
+                        >
+                          <option value="" disabled selected>
+                            Select category
+                          </option>
+                          {allNation.map((nation) => (
+                            <option value={nation._id}>{nation.name}</option>
+                          ))}
+                        </select>
+                      </fieldset>
+                    </div>
+                    <div className="col-lg-6">
+                      <fieldset>
+                        <label for="os">Operating System</label>
+                        <select
+                          name="os"
+                          id="os"
+                          required
+                          value={os}
+                          onChange={onChangeNewPlayerForm}
+                        >
+                          <option value="" disabled selected>
+                            Select Operating System
+                          </option>
+                          <option value="Android">Android</option>
+                          <option value="Ios">Ios</option>
+                        </select>
+                      </fieldset>
+                    </div>
+                    <div className="col-lg-6">
+                      <fieldset>
+                        <label for="size">Size</label>
+                        <input
+                          value={size}
+                          onChange={onChangeNewPlayerForm}
+                          type="number"
+                          name="size"
+                          id="size"
+                          placeholder="Enter Screen's size"
+                          required
+                          min="0"
+                          max="1000"
+                        />
+                      </fieldset>
+                    </div>
+                    <div className="col-lg-6">
+                      <fieldset>
+                        <label for="pin">Pin</label>
+                        <input
+                          value={pin}
+                          onChange={onChangeNewPlayerForm}
+                          type="number"
+                          name="pin"
+                          id="pin"
+                          placeholder="Enter Phone's pin"
+                          required
+                          min="0"
+                          max="1000"
+                        />
+                      </fieldset>
+                    </div>
+                    <div className="col-lg-6">
+                      <fieldset>
+                        <label for="ram">Ram</label>
+                        <input
+                          value={ram}
+                          onChange={onChangeNewPlayerForm}
+                          type="number"
+                          name="ram"
+                          id="ram"
+                          placeholder="Enter Phone's ram"
+                          required
+                          min="0"
+                          max="1000"
+                        />
                       </fieldset>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <div class="col-lg-12">
+                <div className="col-lg-6">
+                  <div className="col-lg-12">
                     <label for="image">Your File</label>
                     <input
                       type="file"
                       id="image"
                       name="image"
                       accept="image/*"
+                      required
                       onChange={handleChange}
                     />
-                    <img src={url} height="255px" width="500px" />
+                    <img src={url} height="345px" width="500px" />
                   </div>
                 </div>
-                <div class="col-lg-12">
+                <div className="col-lg-12">
                   <fieldset>
                     <label for="description">Description</label>
-                    <input
+                    <textarea
                       type="text"
+                      multiline
                       name="description"
                       id="description"
                       value={description}
                       onChange={onChangeNewPlayerForm}
                       placeholder="Description"
                       required
+                      style={{ height: "100px !important" }}
                     />
                   </fieldset>
                 </div>
-                <div class="col-lg-12">
+                <div className="col-lg-12">
                   <fieldset>
                     <button
                       type="submit"
                       id="form-submit"
-                      class="orange-button"
+                      className="orange-button"
                     >
-                      Submit your updating
+                      Submit Your Creating
                     </button>
                   </fieldset>
                 </div>
