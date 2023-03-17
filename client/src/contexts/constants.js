@@ -1,5 +1,5 @@
-export const apiUrl = "http://localhost:5000/api";
-// export const apiUrl = "https://qastore.onrender.com/api";
+// export const apiUrl = "http://localhost:5000/api";
+export const apiUrl = "https://qastore.onrender.com/api";
 
 export const LOCAL_STORAGE_TOKEN_NAME = "worldcup2022";
 export const LOCAL_STORAGE_USER = "User";
