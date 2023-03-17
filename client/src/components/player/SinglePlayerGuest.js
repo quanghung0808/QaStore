@@ -1,5 +1,3 @@
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { PlayerContext } from "../../contexts/PlayerContext";
@@ -11,7 +9,6 @@ import { Button } from "antd";
 const SinglePlayerGuest = ({ player }) => {
   const {
     nationState: { nations },
-    getNations,
   } = useContext(NationContext);
   const navigate = useNavigate();
   const { deletePlayer, setShowToast } = useContext(PlayerContext);
@@ -19,26 +16,6 @@ const SinglePlayerGuest = ({ player }) => {
   const regExp = /\(([^)]+)\)/g;
   const matches = [...position.matchAll(regExp)].flat();
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const showPopconfirm = () => {
-    setOpen(true);
-  };
-  const handleOk = () => {
-    deletePlayer(player._id);
-    setShowToast({
-      show: true,
-      message: "Delete Successsfully",
-      type: "success",
-    });
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 500);
-  };
-  const handleCancel = () => {
-    setOpen(false);
-  };
 
   const handleClick = () => {
     navigate(`/players/${player._id}`);

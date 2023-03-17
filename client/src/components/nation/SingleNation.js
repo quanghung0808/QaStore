@@ -1,4 +1,4 @@
-import { faX, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popconfirm } from "antd";
 import React, { useContext, useState } from "react";

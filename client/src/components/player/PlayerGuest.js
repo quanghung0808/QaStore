@@ -3,7 +3,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { PlayerContext } from "../../contexts/PlayerContext";
-import { Carousel, Empty, notification, Select } from "antd";
+import { Carousel, Empty, notification } from "antd";
 import SinglePlayerGuest from "./SinglePlayerGuest";
 import TopPlayer from "./TopPlayer";
 import { NationContext } from "../../contexts/NationContext";
@@ -26,10 +26,9 @@ const PlayerGuest = () => {
       setShowToast({ show: false, message: "", type: null });
     }
   }, [show]);
-  const { pathname } = useLocation();
 
   const {
-    playerState: { players, playersLoading },
+    playerState: { players },
     getPlayers,
   } = useContext(PlayerContext);
   const [search, setSearch] = useState("");
@@ -199,9 +198,7 @@ const PlayerGuest = () => {
             <div class="col-lg-4">
               <div class="section-heading">
                 <div class="line-dec"></div>
-                <h2>
-                  The Smart Phone in 2022
-                </h2>
+                <h2>The Smart Phone in 2022</h2>
               </div>
             </div>
             <div class="col-lg-2" style={{ alignSelf: "center" }}>

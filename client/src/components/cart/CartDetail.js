@@ -1,17 +1,12 @@
 import {
-  Container,
-  Title,
   Table,
   TableHeader,
   TableRow,
   TableData,
-  SummaryContainer,
-  Total,
-  Button
-} from '../cart/StyledComponents.js';
+  Button,
+} from "../cart/StyledComponents.js";
 import { CartContext } from "../../contexts/CartContext";
 import React, { useContext, useEffect, useState } from "react";
-
 
 const CartDetail = () => {
   const { getCart, removeItem } = useContext(CartContext);
@@ -27,11 +22,12 @@ const CartDetail = () => {
     fetchData();
   }, [getCart]);
 
-  
   const handleRemoveItem = async (itemId) => {
     try {
       const success = await removeItem(itemId);
-      setListCart((prevCart) => prevCart.filter((item) => item.product_id !== itemId)); // update state
+      setListCart((prevCart) =>
+        prevCart.filter((item) => item.product_id !== itemId)
+      ); // update state
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -39,9 +35,10 @@ const CartDetail = () => {
     }
   };
 
-  const totalPrice = listCart.reduce((acc, item) => acc + (Number(item.price) * Number(item.amount)), 0);
-
-  
+  const totalPrice = listCart.reduce(
+    (acc, item) => acc + Number(item.price) * Number(item.amount),
+    0
+  );
 
   return (
     <React.Fragment>
@@ -68,22 +65,31 @@ const CartDetail = () => {
                     {listCart.map((item) => (
                       <TableRow key={item._id}>
                         <TableData>{item.product_name}</TableData>
+                        <TableData>{item.amount}</TableData>
                         <TableData>
-                          {item.amount}
+                          {(
+                            Number(item.price) * Number(item.amount)
+                          ).toLocaleString("vi-VN")}{" "}
+                          VNĐ
                         </TableData>
-                        <TableData>
-                        {(Number(item.price) * Number(item.amount)).toLocaleString("vi-VN")} VNĐ
-                        </TableData>
-                        <Button onClick={() => handleRemoveItem(item.product_id)}>
+                        <Button
+                          onClick={() => handleRemoveItem(item.product_id)}
+                        >
                           Remove Item
                         </Button>
                       </TableRow>
                     ))}
                   </tbody>
                 </Table>
-                <div style={{color: "white", marginTop: "15px", marginBottom: ""}}>
-                  <strong>Total:</strong>{" "}
-                  {totalPrice.toLocaleString("vi-VN")} VND
+                <div
+                  style={{
+                    color: "white",
+                    marginTop: "15px",
+                    marginBottom: "",
+                  }}
+                >
+                  <strong>Total:</strong> {totalPrice.toLocaleString("vi-VN")}{" "}
+                  VND
                 </div>
                 <Button>Checkout</Button>
               </div>

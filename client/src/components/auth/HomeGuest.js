@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Carousel, notification } from "antd";
 import VisibilitySensor from "react-visibility-sensor";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Link } from "react-router-dom";
 
 const HomeGuest = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -86,7 +85,10 @@ const HomeGuest = () => {
                   onChange={(isVisible) => setIsVisible(isVisible)}
                 >
                   <video loop muted ref={videoRef}>
-                    <source src="assets/images/iPhone 12 Pro Ad.mp4" type="video/mp4" />
+                    <source
+                      src="assets/images/iPhone 12 Pro Ad.mp4"
+                      type="video/mp4"
+                    />
                   </video>
                 </VisibilitySensor>
                 {/* <video autoplay playsinline loop muted>

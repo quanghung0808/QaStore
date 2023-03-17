@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { storage } from ".././firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { Button, notification } from "antd";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
+
 import { NationContext } from "../../contexts/NationContext";
 
 const UpdateNation = () => {

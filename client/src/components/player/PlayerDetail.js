@@ -3,13 +3,7 @@ import { Link } from "react-router-dom";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NationContext } from "../../contexts/NationContext";
-import {
-  faArrowLeft,
-  faCheck,
-  faCircleCheck,
-  faCircleXmark,
-  faX,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "antd";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -74,16 +68,16 @@ const PlayerDetail = () => {
                     Brand
                     <br />
                     {nations
-                    .filter((nation) => nation._id === player.category)
-                    .map((index) => (
-                      <strong> {index.name}</strong>
-                    ))}
+                      .filter((nation) => nation._id === player.category)
+                      .map((index) => (
+                        <strong> {index.name}</strong>
+                      ))}
                     <br />
                   </span>
                 </div>
                 <div class="col-7">
                   <span class="owner">
-                  Price
+                    Price
                     <br />
                     <strong>{player.price} VNĐ</strong>
                     <br />
@@ -91,7 +85,7 @@ const PlayerDetail = () => {
                 </div>
                 <div class="col-5">
                   <span class="ends">
-                  OS
+                    OS
                     <br />
                     <strong>{player.os}</strong>
                     <br />
@@ -99,7 +93,7 @@ const PlayerDetail = () => {
                 </div>
                 <div class="col-7">
                   <span class="owner">
-                  Screen Size
+                    Screen Size
                     <br />
                     <strong>{player.size} inches</strong>
                     <br />
@@ -107,7 +101,7 @@ const PlayerDetail = () => {
                 </div>
                 <div class="col-7">
                   <span class="owner">
-                  Power
+                    Power
                     <br />
                     <strong>{player.pin}mAh</strong>
                     <br />
@@ -115,7 +109,7 @@ const PlayerDetail = () => {
                 </div>
                 <div class="col-7">
                   <span class="ends">
-                  Ram
+                    Ram
                     <br />
                     <strong>{player.ram} GB</strong>
                     <br />

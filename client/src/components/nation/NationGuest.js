@@ -3,9 +3,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import { useLocation } from "react-router-dom";
 import { NationContext } from "../../contexts/NationContext";
-import { Carousel, Empty, notification } from "antd";
+import { Empty, notification } from "antd";
 import SingleNationGuest from "./SingleNationGuest";
-import TopNation from "./TopNation";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const NationGuest = () => {

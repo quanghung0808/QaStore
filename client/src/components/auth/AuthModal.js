@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 const AuthModal = ({ modal, setModal }) => {

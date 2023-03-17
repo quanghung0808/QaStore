@@ -1,6 +1,6 @@
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect } from "react";
-import { Avatar, Button, Dropdown, Menu } from "antd";
+import { Avatar, Dropdown, Menu } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link, NavLink, useLocation } from "react-router-dom";
