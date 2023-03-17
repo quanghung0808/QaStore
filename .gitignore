@@ -1,5 +1,4 @@
 server/node_modules
-server/.env
 node_modules/
 .vscode/
 client/node_modules
